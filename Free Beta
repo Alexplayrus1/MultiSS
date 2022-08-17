@@ -1,0 +1,82 @@
+
+--Converted with ttyyuu12345's model to script plugin v4
+function sandbox(var,func)
+	local env = getfenv(func)
+	local newenv = setmetatable({},{
+		__index = function(self,k)
+			if k=="script" then
+				return var
+			else
+				return env[k]
+			end
+		end,
+	})
+	setfenv(func,newenv)
+	return func
+end
+cors = {}
+mas = Instance.new("Model",game:GetService("Lighting"))
+ScreenGui0 = Instance.new("ScreenGui")
+Frame1 = Instance.new("Frame")
+TextLabel2 = Instance.new("TextLabel")
+TextBox3 = Instance.new("TextBox")
+ImageButton4 = Instance.new("ImageButton")
+ScreenGui0.Parent = mas
+ScreenGui0.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+Frame1.Parent = ScreenGui0
+Frame1.Position = UDim2.new(0.588509321, 0, 0.65553236, 0)
+Frame1.Size = UDim2.new(0, 265, 0, 165)
+Frame1.BackgroundColor = BrickColor.new("Really black")
+Frame1.BackgroundColor3 = Color3.new(0.0666667, 0.0666667, 0.0666667)
+TextLabel2.Parent = Frame1
+TextLabel2.Size = UDim2.new(0, 265, 0, 38)
+TextLabel2.BackgroundColor = BrickColor.new("Institutional white")
+TextLabel2.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel2.BackgroundTransparency = 1
+TextLabel2.Font = Enum.Font.SourceSans
+TextLabel2.FontSize = Enum.FontSize.Size14
+TextLabel2.Text = "MultiSS (Free Beta)"
+TextLabel2.TextColor = BrickColor.new("Deep orange")
+TextLabel2.TextColor3 = Color3.new(1, 0.615686, 0)
+TextLabel2.TextScaled = true
+TextLabel2.TextSize = 14
+TextLabel2.TextWrap = true
+TextLabel2.TextWrapped = true
+TextBox3.Parent = Frame1
+TextBox3.Position = UDim2.new(0, 0, 0.278787881, 0)
+TextBox3.Size = UDim2.new(0, 265, 0, 75)
+TextBox3.BackgroundColor = BrickColor.new("Really black")
+TextBox3.BackgroundColor3 = Color3.new(0, 0, 0)
+TextBox3.Font = Enum.Font.Code
+TextBox3.FontSize = Enum.FontSize.Size14
+TextBox3.Text = ""
+TextBox3.TextColor = BrickColor.new("Deep orange")
+TextBox3.TextColor3 = Color3.new(1, 0.701961, 0)
+TextBox3.TextSize = 14
+TextBox3.TextStrokeColor3 = Color3.new(1, 0.701961, 0)
+TextBox3.TextWrap = true
+TextBox3.TextWrapped = true
+TextBox3.TextXAlignment = Enum.TextXAlignment.Left
+TextBox3.TextYAlignment = Enum.TextYAlignment.Top
+ImageButton4.Parent = Frame1
+ImageButton4.Position = UDim2.new(0.407547176, 0, 0.733333349, 0)
+ImageButton4.Size = UDim2.new(0, 58, 0, 44)
+ImageButton4.BackgroundColor = BrickColor.new("Institutional white")
+ImageButton4.BackgroundColor3 = Color3.new(1, 1, 1)
+ImageButton4.BackgroundTransparency = 1
+ImageButton4.Image = "rbxassetid://9405930424"
+ImageButton4.ImageColor3 = Color3.new(1, 0.74902, 0)
+for i,v in pairs(mas:GetChildren()) do
+	v.Parent = game:GetService("Players").LocalPlayer.PlayerGui
+	pcall(function() v:MakeJoints() end)
+end
+mas:Destroy()
+for i,v in pairs(cors) do
+	spawn(function()
+		pcall(v)
+	end)
+end
+ImageButton4.MouseButton1Down:Connect(function()
+	local remote=workspace:FindFirstChild("FERemote")
+	remote:FireServer(TextBox3.Text)
+end)
